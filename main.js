@@ -27,4 +27,12 @@ async function checkWeather(city) {
 
 searchBtn.addEventListener("click", () => {
   checkWeather(searchBox.value);
+  searchBox.value = "";
+});
+
+searchBox.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    checkWeather(searchBox.value);
+    searchBox.value = "";
+  }
 });
