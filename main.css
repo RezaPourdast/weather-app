@@ -98,3 +98,9 @@ body {
 .weather {
   display: none;
 }
+
+.weather-text {
+  font-size: 3rem;
+  margin-top: 70px;
+  padding-bottom: 30px;
+}

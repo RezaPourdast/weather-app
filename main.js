@@ -9,11 +9,9 @@ async function checkWeather(city) {
   const image = document.querySelector(".weather-icon");
 
   if (!data.main) {
-    alert(
-      `the ${
-        "<<" + searchBox.value + ">>"
-      } is not in our document. try another city`
-    );
+    alert(`this city is not in our document. try another city`);
+    document.querySelector(".weather").style.display = "none";
+    document.querySelector(".weather-text").style.display = "block";
   } else {
     document.querySelector(".temp").innerHTML =
       Math.floor(data.main.temp) + "°c";
@@ -26,12 +24,14 @@ async function checkWeather(city) {
 }
 
 searchBtn.addEventListener("click", () => {
+  document.querySelector(".weather-text").style.display = "none";
   checkWeather(searchBox.value);
   searchBox.value = "";
 });
 
 searchBox.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
+    document.querySelector(".weather-text").style.display = "none";
     checkWeather(searchBox.value);
     searchBox.value = "";
   }
