@@ -5,19 +5,32 @@
   box-sizing: border-box;
 }
 
+:root {
+  --B-color: #222;
+  --C-color: linear-gradient(135deg, #00feba, #5b548a);
+  --T-color: #fff;
+}
+.dark-mode {
+  --B-color: #00feba;
+  --C-color: #222;
+  --T-color: #fff;
+}
+
 body {
-  background-color: #222;
+  background-color: var(--B-color);
+  transition: 0.7s;
 }
 
 .card {
   width: 90%;
   max-width: 470px;
-  background: linear-gradient(135deg, #00feba, #5b548a);
-  color: #fff;
+  background: var(--C-color);
+  color: var(--T-color);
   margin: 100px auto 0;
   border-radius: 20px;
   padding: 40px 35px;
   text-align: center;
+  transition: 0.6s;
 }
 
 .search {
@@ -30,7 +43,7 @@ body {
 .search input {
   border: 0;
   outline: 0;
-  background: #ebfffc;
+  background: #eafffc;
   color: #555;
   padding: 10px 15px;
   height: 60px;
@@ -103,4 +116,96 @@ body {
   font-size: 3rem;
   margin-top: 70px;
   padding-bottom: 30px;
+}
+
+.error-card {
+  width: 90%;
+  max-width: 610px;
+  background: var(--C-color);
+  color: var(--T-color);
+  margin: 100px auto 0;
+  border-radius: 20px;
+  padding: 40px 35px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+  display: none;
+  transition: 0.7s;
+}
+
+.dMode {
+  position: static;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.dMode img {
+  width: 30px;
+  cursor: pointer;
+}
+
+/* responsive for phone */
+@media (max-width: 500px) {
+  .card {
+    margin-top: 30px;
+  }
+
+  .search input {
+    height: 50px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: 0;
+    width: 30px;
+  }
+
+  .search button {
+    border-left: #878787 2px;
+    border-style: solid;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 50px;
+    height: 50px;
+  }
+
+  .weather-text {
+    font-size: 2rem;
+    margin-top: 60px;
+    padding-bottom: 2px;
+  }
+
+  .weather-icon {
+    width: 160px;
+    margin-top: 15px;
+  }
+
+  .weather h1 {
+    font-size: 70px;
+  }
+
+  .weather h2 {
+    font-size: 40px;
+  }
+
+  .details {
+    pad: 0 0;
+    margin-top: 35px;
+  }
+
+  .col img {
+    width: 30px;
+    margin-right: 10px;
+  }
+
+  .humidity,
+  .wind {
+    font-size: 18px;
+    margin-top: 0;
+  }
+
+  .error-card {
+    margin: 70px auto 0;
+    padding: 35px 30px;
+    font-size: 1.5rem;
+  }
 }

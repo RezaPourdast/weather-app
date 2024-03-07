@@ -7,11 +7,12 @@ async function checkWeather(city) {
   const response = await fetch(appUrl + `&q=${city}` + `&appid=${appid}`);
   const data = await response.json();
   const image = document.querySelector(".weather-icon");
+  const err = document.querySelector(".error-card");
 
   if (!data.main) {
-    alert(`this city is not in our document. try another city`);
+    err.innerHTML = `❌${searchBox.value}❌ is not in our document. please try another city`;
+    err.style.display = "block";
     document.querySelector(".weather").style.display = "none";
-    document.querySelector(".weather-text").style.display = "block";
   } else {
     document.querySelector(".temp").innerHTML =
       Math.floor(data.main.temp) + "°c";
@@ -20,19 +21,33 @@ async function checkWeather(city) {
     document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
     image.src = `/images/${data.weather[0].main}.png`;
     document.querySelector(".weather").style.display = "block";
+    document.querySelector(".error-card").style.display = "none";
   }
+  searchBox.value = "";
 }
 
 searchBtn.addEventListener("click", () => {
-  document.querySelector(".weather-text").style.display = "none";
-  checkWeather(searchBox.value);
-  searchBox.value = "";
+  if (searchBox.value) {
+    document.querySelector(".weather-text").style.display = "none";
+    checkWeather(searchBox.value);
+  }
 });
 
 searchBox.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    document.querySelector(".weather-text").style.display = "none";
-    checkWeather(searchBox.value);
-    searchBox.value = "";
+  if (searchBox.value) {
+    if (e.key === "Enter") {
+      document.querySelector(".weather-text").style.display = "none";
+      checkWeather(searchBox.value);
+      searchBox.blur();
+    }
+  }
+});
+
+document.querySelector(".dMode").addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  if (document.body.classList.contains("dark-mode")) {
+    document.getElementById("dMode-img").src = "/images/moon.png";
+  } else {
+    document.getElementById("dMode-img").src = "/images/sun.png";
   }
 });
