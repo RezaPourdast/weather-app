@@ -43,7 +43,7 @@ searchBox.addEventListener("keypress", (e) => {
   }
 });
 
-document.querySelector(".dMode").addEventListener("click", () => {
+document.getElementById("dMode-img").addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
   if (document.body.classList.contains("dark-mode")) {
     document.getElementById("dMode-img").src = "/images/moon.png";

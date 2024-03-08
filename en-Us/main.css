@@ -145,6 +145,13 @@ body {
   cursor: pointer;
 }
 
+.fa-link {
+  color: var(--T-color);
+  text-decoration: 0;
+  margin-left: 25px;
+  margin-top: 5px;
+}
+
 /* responsive for phone */
 @media (max-width: 500px) {
   .card {
